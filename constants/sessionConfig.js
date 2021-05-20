@@ -1,13 +1,9 @@
-import { expressSession, promisifyStore } from 'next-session';
+import { expressSession } from 'next-session';
 
 import connectMongo from 'connect-mongo';
 
-const MongoStore = connectMongo(expressSession);
-
-const MONGO_URL = process.env.MONGO_DB_URL;
-
 export default {
-    store: promisifyStore(new MongoStore({
-        url: MONGO_URL,
-      })),
+    store: new (connectMongo(expressSession))({
+        url: process.env.MONGO_DB_URL,
+      }),
   };

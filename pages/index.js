@@ -22,7 +22,7 @@ export default function Home({ views }) {
         </h1>
         <div>
         <p>Session views: {views}</p>
-        <form method="POST"  action="http://umbrel.local:3003/api/v1/invoices" class="btcpay-form btcpay-form--block">
+        <form method="POST"  action="http://umbrel.local:3003/api/v1/invoices" className="btcpay-form btcpay-form--block">
           <input type="hidden" name="storeId" value="54sgJMXR9PJ3xiY5V8jG7z1oWLRRyQe4rJEMujo75FUE" />
           <input type="hidden" name="orderId" value="abc123" />
           <input type="hidden" name="browserRedirect" value="https://btcpay.olliecodes.com?invoicePaid=true" />
