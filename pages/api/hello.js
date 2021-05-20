@@ -1,6 +1,6 @@
-import { withSession } from 'next-session';
+import {  withSession } from 'next-session';
 
-const options = {}; //todo
+import options from '../../constants/sessionConfig';
 
 function handler (req, res) {
   console.log(req.body);
