@@ -7,10 +7,10 @@ const connectionSettings = {
     bufferMaxEntries: 0,
   };
 
-export default {getConfig:()=>({
+export default ()=>({
     store: new (connectMongo(expressSession))({
         url: process.env.MONGO_DB_URL,
         mongoOptions: connectionSettings
       }),
     autoCommit:false
-  })};
+  });

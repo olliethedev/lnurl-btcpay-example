@@ -39,7 +39,8 @@ export default function Home({ views }) {
 
 export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
-  await applySession(req, res, getConfig());
+  let options = getConfig();
+  await applySession(req, res, options);
   console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
   await req.session.commit();
