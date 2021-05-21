@@ -9,3 +9,12 @@ function handler (req, res) {
 }
 
 export default withSession(handler, options);
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "1mb",
+    },
+    externalResolver: true,
+  },
+};
