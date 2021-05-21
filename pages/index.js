@@ -42,6 +42,8 @@ export async function getServerSideProps({ req, res }) {
   await applySession(req, res, options);
   console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
+  await req.session.commit();
+  options.store.close();
   return {
     props: {
       views: req.session.views
