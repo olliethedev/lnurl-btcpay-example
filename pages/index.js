@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { applySession } from 'next-session';
 
 import styles from '../styles/Home.module.css'
-
-import getConfig from './../constants/sessionConfig';
+import appMiddleware from '../middleware/appMiddleware';
 
 export default function Home({ views }) {
   return (
@@ -39,12 +37,14 @@ export default function Home({ views }) {
 
 export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
-  let options = getConfig();
-  await applySession(req, res, options);
+  // let options = getConfig();
+  // await applySession(req, res, options);
+  await appMiddleware.run(req, res);
   console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
-  await req.session.commit();
-  options.store.close();
+  console.log("closing db connection");
+  // req.dbClient.close();
+  console.log("closed db connection");
   return {
     props: {
       views: req.session.views

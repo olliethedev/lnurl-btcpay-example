@@ -11,6 +11,5 @@ export default ()=>({
     store: new (connectMongo(expressSession))({
         url: process.env.MONGO_DB_URL,
         mongoOptions: connectionSettings
-      }),
-    autoCommit:false
+      })
   });
