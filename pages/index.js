@@ -4,7 +4,7 @@ import { applySession } from 'next-session';
 
 import styles from '../styles/Home.module.css'
 
-import options from './../constants/sessionConfig';
+import getConfig from './../constants/sessionConfig';
 
 export default function Home({ views }) {
   return (
@@ -39,7 +39,7 @@ export default function Home({ views }) {
 
 export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
-  await applySession(req, res, options);
+  await applySession(req, res, getConfig());
   console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
   await req.session.commit();
