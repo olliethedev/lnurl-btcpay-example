@@ -3,9 +3,7 @@ import { expressSession } from 'next-session';
 import connectMongo from 'connect-mongo';
 const connectionSettings = {
     useNewUrlParser: true,
-    useFindAndModify: false,
     useUnifiedTopology: true,
-    bufferCommands: false,
     bufferMaxEntries: 0,
   };
 
