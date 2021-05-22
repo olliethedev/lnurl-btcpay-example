@@ -39,7 +39,11 @@ export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
   // let options = getConfig();
   // await applySession(req, res, options);
-  await appMiddleware.run(req, res);
+  try {
+    await appMiddleware.run(req, res);
+  } catch (e) {
+    // handle the error
+  }
   console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
   console.log("closing db connection");
