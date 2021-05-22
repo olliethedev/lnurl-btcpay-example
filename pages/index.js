@@ -47,7 +47,7 @@ export async function getServerSideProps({ req, res }) {
   // console.log("got session");
   // req.session.views = req.session.views ? req.session.views + 1 : 1;
   // console.log("closing db connection");
-  // // req.dbClient.close();
+  req.dbClient.close();
   // console.log("closed db connection");
   return {
     props: {
