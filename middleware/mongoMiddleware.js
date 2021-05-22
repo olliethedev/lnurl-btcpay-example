@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
-let connection;
 
 export const connect = async (databaseUrl) => {
-    if (connection) {
-      return connection;
-    }
+    let connection;
     try {
       console.log("creating connection");
       const connectionSettings = {

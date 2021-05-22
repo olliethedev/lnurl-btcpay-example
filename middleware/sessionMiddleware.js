@@ -8,6 +8,8 @@ export default function sessionMiddleware(req, res, next) {
   const mongoStore = new (connectMongo(session))({
     client: req.dbClient,
     stringify: false,
+    saveUninitialized: false,
+    resave: false,
   });
   return session({
     secret: process.env.SESSION_SECRET,

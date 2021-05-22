@@ -37,17 +37,11 @@ export default function Home({ views }) {
 
 export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
-  // let options = getConfig();
-  // await applySession(req, res, options);
-  // try {
-    await appMiddleware.run(req, res);
-  // } catch (e) {
-  //   // handle the error
-  // }
-  // console.log("got session");
+  await appMiddleware.run(req, res);
+  console.log("got session");
   req.session.views = req.session.views ? req.session.views + 1 : 1;
   // console.log("closing db connection");
-  req.dbClient.close();
+  //req.dbClient.close();
   // console.log("closed db connection");
   return {
     props: {
