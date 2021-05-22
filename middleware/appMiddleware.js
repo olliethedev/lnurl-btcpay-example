@@ -4,5 +4,5 @@ import NextConnect from "next-connect";
 // import mongoMiddleware from "./mongoMiddleware";
 
 export default NextConnect()
-    // .use(mongoMiddleware)
+    .use(mongoMiddleware)
     // .use(sessionMiddleware);
