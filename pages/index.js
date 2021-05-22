@@ -40,7 +40,7 @@ export async function getServerSideProps({ req, res }) {
   // let options = getConfig();
   // await applySession(req, res, options);
   // try {
-  //   await appMiddleware.run(req, res);
+    await appMiddleware.run(req, res);
   // } catch (e) {
   //   // handle the error
   // }
