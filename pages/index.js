@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
-import appMiddleware from '../middleware/appMiddleware';
+// import appMiddleware from '../middleware/appMiddleware';
 
 export default function Home({ views }) {
   return (
@@ -39,19 +39,19 @@ export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
   // let options = getConfig();
   // await applySession(req, res, options);
-  try {
-    await appMiddleware.run(req, res);
-  } catch (e) {
-    // handle the error
-  }
-  console.log("got session");
-  req.session.views = req.session.views ? req.session.views + 1 : 1;
-  console.log("closing db connection");
-  // req.dbClient.close();
-  console.log("closed db connection");
+  // try {
+  //   await appMiddleware.run(req, res);
+  // } catch (e) {
+  //   // handle the error
+  // }
+  // console.log("got session");
+  // req.session.views = req.session.views ? req.session.views + 1 : 1;
+  // console.log("closing db connection");
+  // // req.dbClient.close();
+  // console.log("closed db connection");
   return {
     props: {
-      views: req.session.views
+      views: req?.session?.views ?? 0
     }
   }
 }
