@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
-import appMiddleware from '../middleware/appMiddleware';
 
 export default function Home({ views }) {
   return (
@@ -14,10 +13,19 @@ export default function Home({ views }) {
       </Head>
 
       <main className={styles.main}>
-        <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+        <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
         <h1 className={styles.title}>
           Hello world!
         </h1>
+        <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+          <div className="flex-shrink-0">
+            <img className="h-12 w-12" src="/img/logo.svg" alt="ChitChat Logo"/>
+          </div>
+          <div>
+            <div className="text-xl font-medium text-black">ChitChat</div>
+            <p className="text-gray-500">You have a new message!</p>
+          </div>
+        </div>
         <div>
         <p>Session views: {views}</p>
         <form method="POST"  action="http://umbrel.local:3003/api/v1/invoices" className="btcpay-form btcpay-form--block">
@@ -37,15 +45,9 @@ export default function Home({ views }) {
 
 export async function getServerSideProps({ req, res }) {
   console.log("getServerSideProps");
-  await appMiddleware.run(req, res);
-  console.log("got session");
-  req.session.views = req.session.views ? req.session.views + 1 : 1;
-  // console.log("closing db connection");
-  //req.dbClient.close();
-  // console.log("closed db connection");
   return {
     props: {
-      views: req?.session?.views ?? 0
+      views: 0
     }
   }
 }
