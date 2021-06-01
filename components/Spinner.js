@@ -42,7 +42,7 @@ const Spinner = ({color="#10b981", className="", size} )=> {
 
 Spinner.propTypes = {
     color: PropTypes.string,
-    size: PropTypes.oneOf(['small, medium, large'])
+    size: PropTypes.oneOf(['small', 'medium', 'large'])
 }
 
 export default Spinner

@@ -36,7 +36,7 @@ NavBar.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired,
-      })).isRequired,
+    })).isRequired,
 }
 
 export default NavBar
