@@ -18,7 +18,7 @@ export default function Home() {
         <meta name="description" content="Example project using LNURL" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {data.loggedin ? <Dashboard account={data.account}/> : <Login/>}
+      {data.loggedin ? <Dashboard account={data.account} invoices={data.invoices}/> : <Login/>}
     </div>
   )
 }

@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import { useCookies } from "react-cookie"
 import NavBar from './NavBar'
 import useSWR from 'swr';
+import DepositModal from './DepositModal';
 
-const Dashboard = ({account}) => {
+const Dashboard = ({account, invoices}) => {
     const request = [`${process.env.NEXT_PUBLIC_API_URL}/account/logout`, useMemo(()=>({credentials: "include"}),[])];
     console.log(request)
     const [shouldLogout, setShouldLogout] = useState(false);
+    const [showDepositModal, setShowDepositModal] = useState(false);
     const { data: logoutData, error: logoutError } = useSWR(() => shouldLogout ? request : null);
     const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
     if(shouldLogout && !logoutData) {
@@ -19,8 +21,11 @@ const Dashboard = ({account}) => {
         <div>
             <NavBar title="LNURL Demo"
                 items={[
-                    {name:"Deposit", onClick:()=>{}},
-                    {name:"Withdraw", onClick:()=>{}},
+                    {name:"Deposit", onClick:()=>{
+                        setShowDepositModal(true);
+                    }},
+                    {name:"Withdraw", onClick:()=>{
+                    }},
                     {name:"Logout", onClick:()=>{
                         setShouldLogout(true);
                     }},
@@ -30,6 +35,7 @@ const Dashboard = ({account}) => {
                 {logoutError&&<span>Error logging out</span>}
                 <div className="text-center text-5xl">Dashboard</div>
                 <div className="text-center text-3xl">Account Balance: {account.balance} sats</div>
+                {showDepositModal && <DepositModal account={account} invoices={invoices} close={() => setShowDepositModal(false)}/>}
             </main>
         </div>
     )
