@@ -1,13 +1,14 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import QRCode from "qrcode.react";
 import useSWR from "swr";
 import PropTypes from "prop-types";
 import Modal from './Modal';
 import Spinner from './Spinner';
 
-const Login = (props) => {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const { data, error } = useSWR(() => [`${process.env.NEXT_PUBLIC_API_URL}/login-lnurl/login`, useMemo(()=>({credentials: "include"}),[])])
+  
   if (error) return <div className="text-center text-5xl">Failed to load login code</div>
   if (!data) return <div className="text-center text-5xl"><Spinner  size="large" className="mr-2"/> Loading login code...</div>
   return (
@@ -22,15 +23,19 @@ const Login = (props) => {
         Login with LNURL-Auth
       </button>
       {showModal && (
-        <Modal title="LNURL Auth" close={() => setShowModal(false)}>
+        <Modal title="LNURL Auth" close={() => {
+            setShowModal(false);
+            }}>
             <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
                 <span>Scan with your Lightning Wallet:</span>
                 <br/><br/>
-                <QRCode
-                    renderAs="svg"
-                    style={{ width: "100%", height: "auto" }}
-                    value={data.url}
-                    />
+                <a href={data.url}>
+                    <QRCode
+                        renderAs="svg"
+                        style={{ width: "100%", height: "auto" }}
+                        value={data.url}
+                        />
+                </a>
             </p>
         </Modal>
       )}

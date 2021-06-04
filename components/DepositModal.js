@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import useSWR from "swr";
 import Spinner from "./Spinner";
 
-const DepositModal = ({account, invoices, close }) => {
+const DepositModal = ({invoices, close }) => {
   const request = [
     `${process.env.NEXT_PUBLIC_API_URL}/pay-lnurl/pay`,
     useMemo(() => ({ credentials: "include" }), []),
@@ -27,12 +27,15 @@ const DepositModal = ({account, invoices, close }) => {
           </div>
         )}
         {payLinkData && (
-          <QRCode
-            renderAs="svg"
-            style={{ width: "100%", height: "auto" }}
-            value={payLinkData.url}
-          />
+            <a href={payLinkData.url}>
+                <QRCode
+                    renderAs="svg"
+                    style={{ width: "100%", height: "auto" }}
+                    value={payLinkData.url}
+                />
+            </a>
         )}
+        History:
         {invoices && invoices.slice(0, 5).map(invoice => <div className ="flex justify-between">
             <div>{invoice.amountInvoiced}sats</div>
             <div>{invoice.state}</div>
