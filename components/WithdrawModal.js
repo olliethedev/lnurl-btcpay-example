@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 
 const WithdrawModal = ({withdrawals, close}) => {
     const request = [
-        `${process.env.NEXT_PUBLIC_API_URL}/withdraw-lnurl/withdraw`,
+        `${process.env.NEXT_PUBLIC_API_URL}/lnurl/withdraw-lnurl/withdraw`,
         useMemo(() => ({ credentials: "include" }), []),
     ];
     const { data: withdrawLinkData, error: withdrawLinkError } = useSWR(() => request);

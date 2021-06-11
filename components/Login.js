@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
-  const { data, error } = useSWR(() => [`${process.env.NEXT_PUBLIC_API_URL}/login-lnurl/login`, useMemo(()=>({credentials: "include"}),[])])
+  const { data, error } = useSWR(() => [`${process.env.NEXT_PUBLIC_API_URL}/lnurl/login-lnurl/login`, useMemo(()=>({credentials: "include"}),[])])
   
   if (error) return <div className="text-center text-5xl">Failed to load login code</div>
   if (!data) return <div className="text-center text-5xl"><Spinner  size="large" className="mr-2"/> Loading login code...</div>

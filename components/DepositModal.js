@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 
 const DepositModal = ({invoices, close }) => {
   const request = [
-    `${process.env.NEXT_PUBLIC_API_URL}/pay-lnurl/pay`,
+    `${process.env.NEXT_PUBLIC_API_URL}/lnurl/pay-lnurl/pay`,
     useMemo(() => ({ credentials: "include" }), []),
   ];
   const { data: payLinkData, error: payLinkError } = useSWR(() => request);
